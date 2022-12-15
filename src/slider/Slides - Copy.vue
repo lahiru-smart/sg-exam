@@ -14,17 +14,23 @@
             <div class="slideTitle">
               {{ image.title }}
             </div>
-            <carousel :navigationEnabled="true">
-              <slide
-                class="carousel-box"
-                v-for="slide in slides"
-                :key="slide.id"
-              >
-                <div class="carousel-heading">{{ slide.title }}</div>
-                <div class="carousel-text">
-                  {{ slide.text }}
+            <carousel>
+              <carousel-slide class="carousel-slider">
+                <!-- <img :src="slide" :alt="slide" /> -->
+
+                <div class="carousel-sec">
+                  <div
+                    class="carousel-box"
+                    v-for="slide in slides"
+                    :key="slide.id"
+                  >
+                    <div class="carousel-heading">{{ slide.title }}</div>
+                    <div class="carousel-text">
+                      {{ slide.text }}
+                    </div>
+                  </div>
                 </div>
-              </slide>
+              </carousel-slide>
             </carousel>
           </div>
         </div>
@@ -34,7 +40,8 @@
 </template>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
+import Carousel from "../../src/components/carousel/Carousel.vue";
+import CarouselSlide from "../../src/components/carousel/CarouselSlide";
 export default {
   data: () => ({
     slides: [
@@ -66,10 +73,9 @@ export default {
     ],
     visibleSlide: 3,
   }),
-
   components: {
-    Carousel,
-    Slide,
+    Carousel: Carousel,
+    CarouselSlide: CarouselSlide,
   },
 
   beforeMount() {
